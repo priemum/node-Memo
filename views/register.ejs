@@ -1,0 +1,62 @@
+<%- include("partials/header") %>
+
+<div class="container container-fixed pt-5">
+  <h1 class="ml-3">Register</h1>
+  <div class="row">
+    <div class="col-6">
+      <form class="padd-15" action="/login" method="POST">
+        <div class="form-group">
+          <div class="col-9">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-9">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <small class="form-text text-muted">I'll never share your password with anyone else.</small>
+          </div>
+        </div>
+          <button type="submit" class="btn ml-3 btn-outline-success">Sign Up</button>
+        <a class="btn ml-2 btn-outline-danger" href="/">Cancel</a>
+      </form>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+            <i class="fab fa-google fa-2x"></i>
+            <h4 class="social-text">Sign Up with Google</h4>
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+        <div class="card-body">
+          <a class="btn  btn-block btn-social btn-facebook" href="/auth/facebook" role="button">
+            <i class="fab fa-facebook fa-2x"></i>
+            <h4 class="social-text">Sign Up with Facebook</h4>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-github" href="/auth/github" role="button">
+            <i class="fab fa-github fa-2x"></i>
+            <h4 class="social-text">Sign Up with GitHub</h4>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- include("partials/footer") %>

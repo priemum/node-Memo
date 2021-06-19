@@ -1,0 +1,75 @@
+:root {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body {
+  /* background: linear-gradient(to right, hsl(253, 33%, 36%), hsl(240, 81%, 39%), hsl(231, 87%, 12%)); */
+}
+.container{
+  max-width:1200px;
+  margin: auto;
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+.container-fixed h1{
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.container h1{
+  padding-top: 50px;
+}
+.container .intro-text{
+  font-size: 1.5rem;
+  font-size: 400;
+}
+.container .explanation{
+  /* list-style-type: none; */
+  font-size: 1.3rem;
+  font-size: 300;
+  padding-bottom: 25px;
+}
+
+/* hr */
+hr{
+
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+hr:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+}
+.padd-15{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.buttons{
+  text-align: center;
+}
+.buttons span{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.social-text{
+  font-size: 15px;
+}
+.footer a{
+  color: #333;
+}
+.footer a:hover{
+  text-decoration: none;
+  color: #626a73;
+}
