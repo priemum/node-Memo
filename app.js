@@ -20,6 +20,9 @@ app.get("/login",function(req,res){
 app.get("/register",function(req,res){
   res.render("register");
 })
+app.get("/memos",function(req,res){
+  res.render("memos");
+})
 
 app.listen("3000",function(){
   console.log("Server is running at port 3000");
