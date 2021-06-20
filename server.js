@@ -1,5 +1,7 @@
 //jshint version:6
-require('dotenv').config();
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').parse();
+}
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -14,6 +16,7 @@ db.once("open", () => console.log("Connected with MongoDB"));
 
 app.use(express.static("public"));
 app.set("view engine","ejs");
+app.set("views",__dirname+"/views");
 app.use(bodyParser.urlencoded({
   extended :true
 }));
