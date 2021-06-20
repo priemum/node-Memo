@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "run": "node server.js",
+    "start": "node server.js",
     "memo": "nodemon server.js"
   },
   "keywords": [],
