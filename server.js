@@ -20,11 +20,13 @@ app.use(bodyParser.urlencoded({
   extended :true
 }));
 
+app.use(cookieParser());
 app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
+  resave:true,
+  saveUninitialized:true,
+  secret:process.env.SECRET,
+  cookie:{maxAge:3600000*24}
+}))
 
 app.use(passport.initialize());
 app.use(passport.session());
