@@ -3,7 +3,7 @@
 <div class="container container-fixed pt-5">
   <h1 class="ml-3">Login</h1>
   <div class="row">
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12">
       <form class="padd-15" action="/login" method="POST">
         <div class="form-group">
           <div class="col-9">
@@ -15,14 +15,13 @@
           <div class="col-9">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-            <small class="form-text text-muted">I'll never share your password with anyone else.</small>
           </div>
         </div>
         <button type="submit" class="btn ml-3 btn-outline-success">Sign in</button>
         <a class="btn ml-2 btn-outline-danger" href="/">Cancel</a>
       </form>
     </div>
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12">
       <div class="card">
         <div class="card-body">
           <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
