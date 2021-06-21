@@ -2,24 +2,33 @@
 
 
   <div class="container">
-    <h1>Welcome to programmer's memo</h1>
-    <p class="intro-text"> Programmer's memo is for all of us, to help us with reminders. </p>
-    <p class="intro-text"> So you may ask how this will work, well I have the explanation for you: </p>
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <h1>Welcome to programmer's memo</h1>
+        <p class="intro-text"> Programmer's memo is for all of us, to help us with reminders. </p>
+        <p class="intro-text"> So you may ask how this will work, well I have the explanation for you: </p>
 
-    <ol class="explanation">
-      <li>You register if you don't have account or login if you have account </li>
-      <li>You find codes, commands etc... that you need</li>
-      <li>You press the submit memo button</li>
-      <li>You write code, commands etc.. you named it</li>
-    </ol>
-      <hr>
-      <div class="d-flex justify-content-center"><i class="padd-15 fas fa-file-word fa-7x"></i></div>
-        <br>
-        <div class="buttons">
-          <a class="btn-left btn btn-lg btn-outline-dark" type="button" href="/register">Register</a>
-                <span>or</span>
-          <a class="btn-right btn btn-lg btn-outline-dark" type="button" href="/login">Login</a>
-        </div>
+        <ol class="explanation">
+          <li>You register if you don't have account or login if you have account </li>
+          <li>You find codes, commands etc... that you need</li>
+          <li>You press the submit memo button</li>
+          <li>You write code, commands etc.. you named it</li>
+        </ol>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <hr>
+        <div class="d-flex justify-content-center"><i class="padd-15 fas fa-file-word fa-7x"></i></div>
+          <br>
+          <div class="buttons">
+            <a class="btn-left btn btn-lg btn-outline-dark" type="button" href="/register">Register</a>
+                  <span>or</span>
+            <a class="btn-right btn btn-lg btn-outline-dark" type="button" href="/login">Login</a>
+          </div>
+      </div>
+
+
+    </div>
+
   </div>
 
 <%- include("partials/footer.ejs") %>
