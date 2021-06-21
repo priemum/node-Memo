@@ -6,7 +6,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const md5 = require("md5");
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+const findOrCreate = require("mongoose-findorcreate");
 
 const app = express();
 
@@ -17,49 +20,92 @@ app.use(bodyParser.urlencoded({
   extended :true
 }));
 
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.set('useCreateIndex', true);
 const db = mongoose.connection;
 db.on("error",error => console.log(error));
 db.once("open", () => console.log("Connected with MongoDB"));
 
-const userSchema ={
+
+const userSchema = new mongoose.Schema({
   email: String,
-  password: String
-};
+  password: String,
+  topic: String,
+  title: String,
+  content: String
+});
+
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
+
 const User = new mongoose.model("User",userSchema);
 
-  //Register
-app.post("/register",function(req,res){
-  const newUser = new User({
-    email:req.body.username,
-    password: md5(req.body.password)
-  });
+passport.use(User.createStrategy());
 
-  newUser.save(function(err){
-    if(err){
+//Works just for local authentication
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Register
+app.post("/register",function(req,res){
+  User.register({username: req.body.username}, req.body.password,function(err,use){
+    if (err){
       console.log(err);
-    } else{
-      res.render("memos");
+      res.redirect("/register");
+    }
+    else{
+      passport.authenticate("local")(req,res, function(){
+        res.redirect("/memos");
+      });
     }
   });
 
 
 });
 
-
-  //Login
+//Login
 app.post("/login",function(req,res){
-  const username = req.body.username;
-  const password = md5(req.body.password);
-  User.findOne({email: username},function(err,foundUser){
+  const user = new User ({
+    username: req.body.username,
+    password: req.body.password
+  });
+  req.login(user, function(err){
+    if(err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local",)(req,res, function(){
+        res.redirect("/secrets");
+      });
+    }
+  })
+});
+
+//Submit memo
+app.post("/submit",function(req,res){
+  const submitedTopic = req.body.topic;
+  const submitedTitle = req.body.title;
+  const submitedContent = req.body.content;
+  User.findById(req.user.id,function(err,foundUser){
     if(err){
       console.log(err);
-    } else{
+    } else {
       if(foundUser){
-        if(foundUser.password === password){
-          res.render("memos");
-        }
+        foundUser.topic = submitedTopic;
+        foundUser.title = submitedTitle;
+        foundUser.content = submitedContent;
+        foundUser.save(function(){
+          res.redirect("/memos");
+        });
       }
     }
   });
@@ -75,15 +121,27 @@ app.get("/register",function(req,res){
   res.render("register");
 });
 app.get("/memos",function(req,res){
-  res.render("memos");
+  User.find({"topic":{$ne: null},"title":{$ne: null},"content":{$ne: null}}, function(err,foundUsers){
+    if(err){
+      console.log(err);
+    } else {
+      if(foundUsers) {
+        res.render("memos",{usersWithMemos: foundUsers});
+      }
+    }
+  });
 });
 app.get("/submit",function(req,res){
-  res.render("submit");
+  if(req.isAuthenticated()){
+    res.render("submit");
+  } else {
+    res.redirect("/login");
+  }
 });
 app.get("/logout",function(req,res){
-  res.render("home");
+  req.logout();
+  res.redirect("/");
 });
-
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is running at port 3000");
