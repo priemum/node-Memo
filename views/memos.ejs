@@ -9,20 +9,22 @@
     </div>
   </div>
   <div class="row">
+
+      <% memos.forEach(function(memo){ %>
+
+
       <div class="col-lg-4 col-md-4 col-sm-12 mb-5">
-
         <div class="card mx-auto border border-info shadow-0 mb-3" style="max-width: 18rem;">
-
-          <% usersWithMemos.forEach(function(user){ %>
-            <div class="card-header"><%=user.topic%></div>
-            <div class="card-body">
-                <h5 class="card-title"><%=user.title%></h5>
-                <p class="card-text"><%=user.content%></p>
+            <div class="card-header">
+                <%=memo.topic%>
             </div>
-        <%  }) %>
-
+            <div class="card-body">
+                <h5 class="card-title"><%=memo.title%></h5>
+                <p class="card-text"><%=memo.content%></p>
+            </div>
             </div>
           </div>
+  <% }) %>
         </div>
         <a class="btn ml-2 btn-outline-success" href="/submit">Submit memos</a>
         <a class="btn ml-2 btn-outline-danger" href="/logout">Log out</a>

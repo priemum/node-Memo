@@ -39,19 +39,23 @@ const db = mongoose.connection;
 db.on("error",error => console.log(error));
 db.once("open", () => console.log("Connected with MongoDB"));
 
-
-const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
+const memoSchema = new mongoose.Schema({
   topic: String,
   title: String,
   content: String
+});
+const Memo = new mongoose.model("Memo",memoSchema);
+
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String
 });
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User",userSchema);
+
 
 passport.use(User.createStrategy());
 
@@ -94,24 +98,18 @@ app.post("/login",function(req,res){
 });
 
 //Submit memo
-app.post("/submit",function(req,res){
-  const submitedTopic = req.body.topic;
-  const submitedTitle = req.body.title;
-  const submitedContent = req.body.content;
-  User.findById(req.user.id,function(err,foundUser){
-    if(err){
-      console.log(err);
-    } else {
-      if(foundUser){
-        foundUser.topic = submitedTopic;
-        foundUser.title = submitedTitle;
-        foundUser.content = submitedContent;
-        foundUser.save(function(){
-          res.redirect("/memos");
-        });
-      }
-    }
-  });
+app.post("/submit", function(req,res){
+
+const memo = new Memo({
+  topic: req.body.topic,
+  title: req.body.title,
+  content: req.body.content
+});
+memo.save(function(err){
+  if(!err){
+    res.redirect("/memos");
+  }
+});
 });
 
 app.get("/",function(req,res){
@@ -124,15 +122,11 @@ app.get("/register",function(req,res){
   res.render("register");
 });
 app.get("/memos",function(req,res){
-  User.find({"topic":{$ne: null},"title":{$ne: null},"content":{$ne: null}}, function(err,foundUsers){
-    if(err){
-      console.log(err);
-    } else {
-      if(foundUsers) {
-        res.render("memos",{usersWithMemos: foundUsers});
-      }
-    }
-  });
+ Memo.find({},function(err,memos){
+    res.render("memos",{
+      memos: memos
+    });
+ });
 });
 app.get("/submit",function(req,res){
   if(req.isAuthenticated()){
