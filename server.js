@@ -10,6 +10,7 @@ const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require("mongoose-findorcreate");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
