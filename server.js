@@ -70,16 +70,20 @@ app.get("/",function(req,res){
 });
 app.get("/login",function(req,res){
   res.render("login");
-})
+});
 app.get("/register",function(req,res){
   res.render("register");
-})
+});
 app.get("/memos",function(req,res){
   res.render("memos");
+});
+app.get("/submit",function(req,res){
+  res.render("submit");
 });
 app.get("/logout",function(req,res){
   res.render("home");
 });
+
 
 app.listen(process.env.PORT || 3000);
 console.log("Server is running at port 3000");
