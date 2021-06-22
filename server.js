@@ -97,30 +97,30 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/memos"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_APP_ID,
-    clientSecret: process.env.GITHUB_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/github/memos"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      // console.log(profile);
-      return done(err, user);
-    });
-  }
-));
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.FACEBOOK_APP_ID,
+//     clientSecret: process.env.FACEBOOK_APP_SECRET,
+//     callbackURL: "http://localhost:3000/auth/facebook/memos"
+//   },
+//   function(accessToken, refreshToken, profile, cb) {
+//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+//       return cb(err, user);
+//     });
+//   }
+// ));
+//
+// passport.use(new GitHubStrategy({
+//     clientID: process.env.GITHUB_APP_ID,
+//     clientSecret: process.env.GITHUB_APP_SECRET,
+//     callbackURL: "http://localhost:3000/auth/github/memos"
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     User.findOrCreate({ githubId: profile.id }, function (err, user) {
+//       // console.log(profile);
+//       return done(err, user);
+//     });
+//   }
+// ));
 
 
 
