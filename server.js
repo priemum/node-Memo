@@ -67,8 +67,8 @@ const User = new mongoose.model("User",userSchema);
 passport.use(User.createStrategy());
 
 //Works just for local authentication
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 
 //Works for any other kind of authenticaton
@@ -85,7 +85,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/memos",
+    // callbackURL: "http://localhost:3000/auth/google/memos",
     callbackURL: "https://programming-memo.herokuapp.com/auth/google/memos",
     passReqToCallback   : true,
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
@@ -98,17 +98,18 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-// passport.use(new FacebookStrategy({
-//     clientID: process.env.FACEBOOK_APP_ID,
-//     clientSecret: process.env.FACEBOOK_APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/facebook/memos"
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//       return cb(err, user);
-//     });
-//   }
-// ));
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    // callbackURL: "http://localhost:3000/auth/facebook/memos",
+    callbackURL: "https://programming-memo.herokuapp.com/auth/facebook/memos"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 //
 // passport.use(new GitHubStrategy({
 //     clientID: process.env.GITHUB_APP_ID,
