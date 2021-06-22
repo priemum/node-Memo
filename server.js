@@ -110,19 +110,20 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
-//
-// passport.use(new GitHubStrategy({
-//     clientID: process.env.GITHUB_APP_ID,
-//     clientSecret: process.env.GITHUB_APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/github/memos"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate({ githubId: profile.id }, function (err, user) {
-//       // console.log(profile);
-//       return done(err, user);
-//     });
-//   }
-// ));
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_APP_ID,
+    clientSecret: process.env.GITHUB_APP_SECRET,
+    // callbackURL: "http://localhost:3000/auth/github/memos",
+    callbackURL: "https://programming-memo.herokuapp.com/auth/github/memos"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ githubId: profile.id }, function (err, user) {
+      // console.log(profile);
+      return done(err, user);
+    });
+  }
+));
 
 
 
