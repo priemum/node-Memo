@@ -54,7 +54,8 @@ const Memo = new mongoose.model("Memo",memoSchema);
 const userSchema = new mongoose.Schema({
   username:String,
   email: String,
-  password: String
+  password: String,
+  googleId: String,
 });
 
 userSchema.plugin(passportLocalMongoose);
