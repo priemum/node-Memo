@@ -185,7 +185,7 @@ passport.authenticate('google', {
 ));
 
 //Google authentication with passport
-app.get("/auth/google/secrets",
+app.get("/auth/google/memos",
     passport.authenticate( "google", {
         successRedirect: "/memos",
         failureRedirect: "/login"
@@ -207,7 +207,7 @@ app.get("/auth/github",
   passport.authenticate("github", { scope: [ 'user:email' ] }));
 
 //Github authentication with passport
-app.get("/auth/github/secrets",
+app.get("/auth/github/memos",
   passport.authenticate("github", {  failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirect home.
