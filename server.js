@@ -125,8 +125,6 @@ passport.use(new GitHubStrategy({
   }
 ));
 
-
-
 //Register
 app.post("/register",function(req,res){
   User.register({username: req.body.username, email: req.body.email}, req.body.password,function(err,use){
@@ -178,7 +176,6 @@ app.get("/",function(req,res){
   res.render("home");
 });
 
-
 //Google login
 app.get("/auth/google",
 passport.authenticate('google', {
@@ -217,12 +214,17 @@ app.get("/auth/github/memos",
     res.redirect("/memos");
   });
 
+//Login route
 app.get("/login",function(req,res){
   res.render("login");
 });
+
+//Register route
 app.get("/register",function(req,res){
   res.render("register");
 });
+
+//Memos route
 app.get("/memos",function(req,res){
   if(req.isAuthenticated()){
     Memo.find({},function(err,memos){
@@ -235,6 +237,8 @@ app.get("/memos",function(req,res){
   }
 
 });
+
+//Submit route
 app.get("/submit",function(req,res){
   if(req.isAuthenticated()){
     res.render("submit");
@@ -242,6 +246,8 @@ app.get("/submit",function(req,res){
     res.redirect("/login");
   }
 });
+
+//Logout route
 app.get("/logout",function(req,res){
   req.logout();
   res.redirect("/");

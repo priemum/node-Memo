@@ -3,17 +3,17 @@
 <div class="container memos">
   <div class="row">
     <div class="col-lg-12">
-      <hr>
+      <a href="/"><hr></a>
         <h1>Welcome again!</h1>
       <p class="into-text">Here you can find your memos and memos from other users</p>
     </div>
   </div>
   <div class="row">
-    
+
       <% memos.forEach(function(memo){ %>
 
       <div class="col-lg-4 col-md-4 col-sm-12 mb-5">
-        <div class="card mx-auto border border-info shadow-0 mb-3" style="max-width: 18rem;">
+        <div class="card my-animation mx-auto border border-info shadow-0 mb-3" style="max-width: 18rem;">
             <div class="card-header">
                 <%=memo.topic%>
             </div>

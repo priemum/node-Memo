@@ -92,3 +92,15 @@ hr:after {
   text-decoration-style: wavy;
   text-decoration-color: gray;
 }
+.my-animation:hover{
+  transform: scale(0.9);
+  border-radius: 10px;
+}
+.text-login a{
+    color: gray;
+    font-size: 15px;
+}
+.text-login a:hover{
+  text-decoration: none;
+  color: #626a73;
+}
