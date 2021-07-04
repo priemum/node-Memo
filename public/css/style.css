@@ -7,6 +7,9 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   background: #ECE9E6;
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
@@ -103,4 +106,23 @@ hr:after {
 .text-login a:hover{
   text-decoration: none;
   color: #626a73;
+}
+
+/* back to top button */
+
+#myBtn{
+  padding: 15px;
+  width: 50px;
+  border-radius: 12px;
+  font-size: 12px;
+  outline: none;
+  border: none;
+  position: fixed;
+  right: 75px;
+  bottom: 50px;
+  color:#F4F2F0;
+  background-color: #d12b44;
+}
+#myBtn:hover{
+  background-color: #626a73;
 }
