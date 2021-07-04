@@ -8,6 +8,9 @@
     font-size: 25px!important;
     text-indent: 10px;
   }
+  #myBtn{
+    display: none;
+  }
   footer{
     padding-top: 100px;
   }
