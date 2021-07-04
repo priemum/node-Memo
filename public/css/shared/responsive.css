@@ -8,10 +8,14 @@
     font-size: 25px!important;
     text-indent: 10px;
   }
-  #myBtn{
-    display: none;
-  }
   footer{
     padding-top: 100px;
   }
+}
+@media screen and (max-width:1024px) {
+
+  #myBtn{
+    left: 771px;
+  }
+
 }
