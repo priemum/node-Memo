@@ -1,4 +1,4 @@
-# *programmers' memo project made with Node.js*
+# *programmer's memo project made with Node.js*
 
 ***Programmer's memo is for all of us, to help us with reminders.*** 
 
