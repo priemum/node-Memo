@@ -11,7 +11,7 @@ body {
   background: #ECE9E6;
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
   background: linear-gradient(to right, #FFFFFF, #ECE9E6);
-  font-family: 'Montserrat Alternates', sans-serif; 
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 .container{
   max-width:1200px;
@@ -88,6 +88,7 @@ hr:after {
   color: #626a73;
 }
 .footer span{
+  font-style: italic;
   text-decoration-line: underline;
   text-decoration-style: wavy;
   text-decoration-color: gray;
