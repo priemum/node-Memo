@@ -1,8 +1,5 @@
 @import "shared/responsive.css";
 @import "shared/memocard.css";
-:root {
-  font-family: 'Montserrat Alternates', sans-serif;
-}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -14,11 +11,11 @@ body {
   background: #ECE9E6;
   background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
   background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+  font-family: 'Montserrat Alternates', sans-serif; 
 }
 .container{
   max-width:1200px;
   margin: auto;
-  font-family: 'Montserrat Alternates', sans-serif;
 }
 .container-fixed h1{
   text-align: center;
