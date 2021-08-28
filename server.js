@@ -15,7 +15,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 const cookieParser = require("cookie-parser");
 
-const app = express();
+const app = express(); 
 
 app.use(express.static("public"));
 app.set("view engine","ejs");
